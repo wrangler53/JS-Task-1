@@ -10,10 +10,36 @@
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-
-    <script src="js/script.js"></script>
 </head>
 <body>
+    <div class="container col-md-6">
+        <h1 class="text-center">Create a new employee</h1>
+        <form>
+            <div class="form-group">
+                <label for="last-name" class="font-weight-bold font-italic">Enter your last name:</label>
+                <input type="text" id="last-name" placeholder="Last name" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="name" class="font-weight-bold font-italic">Enter name:</label>
+                <input type="text" id="name" placeholder="Name " class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="surname" class="font-weight-bold font-italic">Enter your surname:</label>
+                <input type="text" id="surname" placeholder="Surname" class="form-control">
+            </div>
+            <div class="font-weight-bold font-italic">Choose employee type:</div>
+            <div class="form-check">
+                <input type="radio" name="employeeType" id="wage-employee" value="Wage employee" class="form-check-input">
+                <label for="wage-employee" class="form-check-label">Wage employee</label>
+            </div>
+            <div class="form-check">
+                <input type="radio" name="employeeType" id="fixed-rate-employee" value="Fixed rate employee" class="form-check-input">
+                <label for="fixed-rate-employee" class="form-check-label">Fixed rate employee</label>
+            </div>
+        </form>
+    </div>
+
     
+    <script src="js/script.js"></script>
 </body>
 </html>
