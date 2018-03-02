@@ -1,7 +1,21 @@
 // type 1 - wage employee, type 2 - with fixed salary
 let employeeType;
-let employeesArray = [];
-let id = 0;
+
+let employeesArr = [
+    {id:0,lastName:'Mcfarlane',name:'Brittney',surname:'Hungry',salary:250},
+    {id:1,lastName:'Castillo',name:'Dante',surname:'Juicer',salary:331.30},
+    {id:2,lastName:'Dunn',name:'Livia',surname:'Earth-roamer',salary:600},
+    {id:3,lastName:'Mann',name:'Yasmin',surname:'Grimy',salary:110},
+    {id:4,lastName:'Allen',name:'Kirstie',surname:'Ana',salary:1500},
+    {id:5,lastName:'Carson',name:'Evie-Rose',surname:'Madeleine',salary:2600.20},
+    {id:6,lastName:'Zimmerman',name:'Lynn',surname:'Claire',salary:500},
+    {id:7,lastName:'Briggs',name:'Sarah',surname:'Clawer',salary:550}
+];
+
+sortEmployees(employeesArr);
+buildTables();
+
+let id = 8;
 
 // Work with employee type
 $('input[name="employeeType"]').change(() => {
@@ -31,13 +45,15 @@ function getEmployeeData() {
 
 // Choose which type of employee create
 function createEmployee(employeeLastName, employeeName, employeeSurname, hourRate, fixedSalary) {
-    (employeeType == '1') ? employeesArray.push(new wageEmployee(id, employeeLastName, employeeName, employeeSurname, hourRate)) 
-                          : employeesArray.push(new fixedRateEmployee(id, employeeLastName, employeeName, employeeSurname, fixedSalary));
+    (employeeType == '1') ? employeesArr.push(new wageEmployee(id, employeeLastName, employeeName, employeeSurname, hourRate)) 
+                          : employeesArr.push(new fixedRateEmployee(id, employeeLastName, employeeName, employeeSurname, fixedSalary));
     
-    employeesArray[id].salaryPerMonth();
+    employeesArr[id].salaryPerMonth();
     id++; 
 
-    buildTable();
+    // sort current employess array by salary and build tables
+    sortEmployees(employeesArr);
+    buildTables();
 }
 
 // Base employee constructor
@@ -69,11 +85,18 @@ class fixedRateEmployee extends Employee {
     }
 }
 
-// Build tables functions
-function buildTable() {
-    $('#allEmployeesTable tbody').html('');
+// Sort employees array function 
+function sortEmployees(arr) {  
+    arr.sort((obj1, obj2) => {
+        return obj2.salary - obj1.salary;
+    })
+}
 
-    employeesArray.forEach(item => {
+// Build tables functions
+function buildTables() {
+    $('.employeesTable tbody').html('');
+
+    employeesArr.forEach(item => {
         $('#allEmployeesTable tbody').html(
             $('#allEmployeesTable tbody').html() +
             `<tr>
@@ -82,6 +105,27 @@ function buildTable() {
                 <td>${item.name}</td>
                 <td>${item.surname}</td>
                 <td>${item.salary}</td>
+            </tr>`
+        );
+    })
+
+    employeesArr.slice(0, 5).forEach(item => {
+        $('#topFiveEmployeesTable tbody').html(
+            $('#topFiveEmployeesTable tbody').html() +
+            `<tr>
+                <td>${item.lastName}</td>
+                <td>${item.name}</td>
+                <td>${item.surname}</td>
+                <td>${item.salary}</td>
+            </tr>`
+        );
+    })
+
+    employeesArr.slice(employeesArr.length - 3, employeesArr.length).forEach(item => {
+        $('#lastThreeEmployeesTable tbody').html(
+            $('#lastThreeEmployeesTable tbody').html() +
+            `<tr>
+                <td>${item.id}</td>
             </tr>`
         );
     })
