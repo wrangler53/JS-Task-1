@@ -17,6 +17,13 @@ buildTables();
 
 let id = 8;
 
+// Prevent from page reload after submit
+$('form').submit((e) => {
+    e.preventDefault();
+    getEmployeeData();
+});
+
+
 // Work with employee type
 $('input[name="employeeType"]').change(() => {
     employeeType = $('input[name="employeeType"]:checked').val();
